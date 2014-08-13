@@ -17,5 +17,6 @@
 - (void)setImage:(UIImage *)image;
 
 - (UIImage *)processedImage;
+- (CGRect)croppedFrame;
 
 @end
