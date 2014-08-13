@@ -191,8 +191,8 @@
 - (CGRect)croppedFrame {
     CGFloat scale = [[UIScreen mainScreen] scale];
 
-    return CGRectMake(self.scrollView.contentOffset.x * scale,
-                      (self.scrollView.contentOffset.y * scale) + CGRectGetMinY(self.scrollView.frame),
+    return CGRectMake(0,
+                      CGRectGetMinY(self.scrollView.frame),
                       self.scrollView.frame.size.width * scale,
                       self.scrollView.frame.size.height * scale);
 }
