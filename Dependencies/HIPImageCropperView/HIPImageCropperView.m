@@ -16,6 +16,7 @@
 @property (nonatomic, readwrite, strong) UIScrollView *scrollView;
 @property (nonatomic, readwrite, strong) UIImageView *imageView;
 @property (nonatomic, readwrite, strong) UIView *overlayView;
+@property (nonatomic, readwrite) CGFloat inset;
 
 - (void)updateOverlay;
 
@@ -25,13 +26,16 @@
 @implementation HIPImageCropperView
 
 - (id)initWithFrame:(CGRect)frame
-       cropAreaSize:(CGSize)cropSize {
+       cropAreaSize:(CGSize)cropSize
+              inset:(CGFloat)inset {
 
     self = [super initWithFrame:frame];
 
     if (!self) {
         return nil;
     }
+
+    self.inset = inset;
 
     [self setBackgroundColor:[UIColor blackColor]];
     [self setAutoresizingMask:(UIViewAutoresizingFlexibleWidth |
@@ -88,6 +92,8 @@
 
     if (self.imageView.frame.size.width < self.imageView.frame.size.height) {
         zoomScale = (self.scrollView.frame.size.width / self.imageView.frame.size.width);
+    } else if (self.imageView.frame.size.width == self.imageView.frame.size.height) {
+        zoomScale = (self.scrollView.frame.size.height / (self.imageView.frame.size.height - (self.inset * 4)));
     } else {
         zoomScale = (self.scrollView.frame.size.height / self.imageView.frame.size.height);
     }

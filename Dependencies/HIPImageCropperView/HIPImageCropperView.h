@@ -12,7 +12,8 @@
 @interface HIPImageCropperView : UIView <UIScrollViewDelegate>
 
 - (id)initWithFrame:(CGRect)frame
-       cropAreaSize:(CGSize)cropSize;
+       cropAreaSize:(CGSize)cropSize
+              inset:(CGFloat)inset;
 
 - (void)setImage:(UIImage *)image;
 
